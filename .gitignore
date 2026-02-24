@@ -2,12 +2,14 @@
 *
 */
 
-# Whitelist only _data and .github directories
+# Whitelist only _data, .github, and backend directories
 !.gitignore
 !_data/
 !_data/**
 !.github/
 !.github/**
+!backend/
+!backend/**
 
 # Build and dependency directories (explicit exclusion)
 /backend/target/
