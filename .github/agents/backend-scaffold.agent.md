@@ -6,8 +6,6 @@ tools:
   - search
   - edit
   - shell
-handoffs:
-  - frontend-scaffold
 ---
 
 ## Goal
