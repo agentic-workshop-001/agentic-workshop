@@ -1,0 +1,37 @@
+# Ignore everything by default
+*
+*/
+
+# Whitelist only _data and .github directories
+!.gitignore
+!_data/
+!_data/**
+!.github/
+!.github/**
+
+# Build and dependency directories (explicit exclusion)
+/backend/target/
+/backend/.mvn/
+/frontend/node_modules/
+/frontend/dist/
+/frontend/dist-ssr/
+/frontend/.vite/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local

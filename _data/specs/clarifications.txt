@@ -1,0 +1,42 @@
+# Clarifications - DB Scaffold
+
+## Seed Data Idempotency
+**Decision**: Seed import checks if data already exists before inserting.
+- Meters: checked by `meterId`
+- Contracts: checked by `contractId`
+- Readings: checked by combination of `meterId + date + hour` (unique constraint)
+- Result: safe to restart without duplicates
+
+## Empty/Optional Fields Handling
+**Decision**: Empty CSV fields are treated as `null` in database.
+- Examples: `cups`, `postalCode`, `email`, `iban`, `endDate`, `quality`
+- Exception: required fields (PK, FK, address, city, etc.) cause import failure if empty
+
+## Contract Type Validation
+**Decision**: Database layer does NOT validate contract type consistency (flatMonthlyFeeEur vs fixedPricePerKwhEur).
+- This validation belongs to billing logic layer (backend-scaffold).
+- Seed import assumes CSV is well-formed per logic-spec.
+
+## Reading Duplicate Handling
+**Decision**: If duplicate reading (same meterId + date + hour) is found, skip silently with debug log.
+- This prevents import failures on restart.
+- Unique constraint on DB prevents dual inserts at DB level.
+
+## H2 In-Memory Database
+**Decision**: Using H2 in-memory (jdbc:h2:mem) for workshop simplicity.
+- Schema recreated on each boot (ddl-auto=create-drop).
+- Seed runs on every startup (if data not present).
+- Suitable for testing and demo.
+
+## Billing Cycle
+**Decision**: Only MONTHLY is implemented in enum per logic-spec.
+- Future: expandable for other cycles if needed.
+
+## Quality Field
+**Decision**: Quality enum (REAL, ESTIMATED) is optional in readings.
+- NULL quality is allowed; useful for future analytics.
+
+## Datetime Handling
+**Decision**: Using LocalDate for dates, Integer for hour.
+- Reading composite key: (meter_id, date, hour) instead of timestamp.
+- Allows hourly readings aggregation as per logic-spec.

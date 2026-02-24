@@ -1,0 +1,84 @@
+1) meters.csv (maestro de contadores)
+
+Campos (obligatorios)
+
+meterId (string, PK) — código del contador (ej. MTR0001)
+
+cups (string, opcional) — identificador del punto de suministro
+
+address (string)
+
+postalCode (string)
+
+city (string)
+
+Ejemplo
+
+meterId,cups,address,postalCode,city
+MTR0001,ES0021000000000001,C/ Mayor 10,46001,Valencia
+MTR0002,ES0021000000000002,Av. Aragón 55,46021,Valencia
+
+2) contracts.csv (contrato por contador + persona)
+
+Campos
+
+contractId (string, PK)
+
+meterId (FK → meters.meterId)
+
+customerId (string)
+
+fullName (string)
+
+nif (string)
+
+email (string)
+
+contractType (enum): FLAT | FIXED
+
+startDate (YYYY-MM-DD)
+
+endDate (YYYY-MM-DD o vacío)
+
+billingCycle (enum): MONTHLY
+
+flatMonthlyFeeEur (decimal, requerido si FLAT)
+
+includedKwh (decimal, requerido si FLAT)
+
+overagePricePerKwhEur (decimal, requerido si FLAT)
+
+fixedPricePerKwhEur (decimal, requerido si FIXED)
+
+taxRate (decimal, requerido) — ej. 0.21
+
+iban (string)
+
+Ejemplo
+
+contractId,meterId,customerId,fullName,nif,email,contractType,startDate,endDate,billingCycle,flatMonthlyFeeEur,includedKwh,overagePricePerKwhEur,fixedPricePerKwhEur,taxRate,iban
+CONT001,MTR0001,CUST001,Ana Pérez Gómez,12345678Z,ana.perez@email.com,FIXED,2025-01-01,,MONTHLY,,,,0.19,0.21,ES6621000418401234567891
+CONT002,MTR0002,CUST002,Roberto García Palop,87654321X,roberto@email.com,FLAT,2025-06-01,,MONTHLY,45.00,200,0.28,,0.21,ES6621000418409876543210
+
+3) readings.csv (medidas horarias)
+
+Campos
+
+meterId (FK → meters.meterId)
+
+date (YYYY-MM-DD)
+
+hour (0-23)
+
+kwh (decimal >= 0)
+
+quality (enum opcional): REAL | ESTIMATED
+
+Ejemplo
+
+meterId,date,hour,kwh,quality
+MTR0001,2026-01-01,0,0.45,REAL
+MTR0001,2026-01-01,1,0.40,REAL
+MTR0001,2026-01-01,2,0.38,REAL
+MTR0002,2026-01-01,0,0.60,ESTIMATED
+MTR0002,2026-01-01,1,0.55,REAL
