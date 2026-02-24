@@ -1,3 +1,31 @@
+# Clarifications - DB Scaffold + API Business Layer
+
+## API Business Layer (backend-scaffold)
+
+### Active Contract Detection for Billing
+**Decision**: A contract is considered active in period [from, to] when:
+  `startDate <= to AND (endDate IS NULL OR endDate >= from)`
+- All contracts loaded via `findAll()` and filtered in service layer (simple for workshop scale).
+
+### Invoice Idempotency
+**Decision**: If `billing/run` is called twice for the same period, existing invoices are skipped.
+- Uniqueness enforced by DB constraint: (contract_id, period).
+- Second run returns empty list of generated invoices.
+
+### PDF Generation
+**Decision**: Simple single-page PDF using Apache PDFBox 3.0.2.
+- Latin-1 safe: special chars (accents) are replaced by PDFBox's standard Type1 font.
+- PDF is generated on-the-fly (not stored on disk); generated from Invoice entity fields.
+
+### CSV Import via Multipart
+**Decision**: Duplicate readings in uploaded CSV return a 400-level message in `errors[]`
+- Consistent with logic-spec: error 400 for duplicate hour.
+- Import result always returns `{inserted, skipped, errors[]}`.
+
+### Reading CRUD Endpoint
+**Decision**: No PUT for readings (composite PK makes partial update awkward).
+- Delete + re-POST is the update pattern for readings.
+
 # Clarifications - DB Scaffold
 
 ## Seed Data Idempotency
