@@ -1,8 +1,13 @@
 ---
 name: backend-scaffold
 description: Implements Spring Boot API (CRUD + imports + billing + invoices + PDF) using SSOT specs. Hands off to frontend-scaffold.
-tools: ["read", "search", "edit", "shell"]
-handoffs: ["frontend-scaffold"]
+tools:
+  - read
+  - search
+  - edit
+  - shell
+handoffs:
+  - frontend-scaffold
 ---
 
 ## Goal
