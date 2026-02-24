@@ -9,6 +9,10 @@
 !.github/
 !.github/**
 
+# Whitelist backend source tree
+!backend/
+!backend/**
+
 # Build and dependency directories (explicit exclusion)
 /backend/target/
 /backend/.mvn/

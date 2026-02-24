@@ -1,0 +1,3 @@
+contractId,meterId,customerId,fullName,nif,email,contractType,startDate,endDate,billingCycle,flatMonthlyFeeEur,includedKwh,overagePricePerKwhEur,fixedPricePerKwhEur,taxRate,iban
+CONT001,MTR0001,CUST001,Ana Pérez Gómez,12345678Z,ana.perez@email.com,FIXED,2025-01-01,,MONTHLY,,,,0.19,0.21,ES6621000418401234567891
+CONT002,MTR0002,CUST002,Roberto García Palop,87654321X,roberto@email.com,FLAT,2025-06-01,,MONTHLY,45.00,200,0.28,,0.21,ES6621000418409876543210
