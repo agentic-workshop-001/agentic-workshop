@@ -4,7 +4,7 @@
 # To make this agent available, merge this file into the default repository branch.
 # For format details, see: https://gh.io/customagents/config
 
-name: Test Agent
+name: Test my-agent2
 description: Esto es una prueba de Custom Agent
 ---
 
