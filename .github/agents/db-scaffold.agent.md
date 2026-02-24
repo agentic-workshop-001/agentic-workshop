@@ -1,8 +1,11 @@
 ---
 name: db-scaffold
-description: Builds JPA/H2 persistence from _data/specs/csv-spec.txt and seeds DB from _data/db/samples/*.csv. Hands off to backend-scaffold.
-tools: ["read", "search", "edit", "shell"]
-handoffs: ["backend-scaffold"]
+description: Builds JPA/H2 persistence from _data/specs/csv-spec.txt and seeds DB from _data/db/samples/*.csv.
+tools:
+  - read
+  - search
+  - edit
+  - shell
 ---
 
 ## Goal

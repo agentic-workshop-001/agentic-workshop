@@ -1,8 +1,11 @@
 ---
 name: frontend-scaffold
 description: Builds React/Vite UI (3 maintenances + billing/invoices + PDF download) and finishes with a runbook to start everything.
-tools: ["read", "search", "edit", "shell"]
-handoffs: ["user"]
+tools:
+  - read
+  - search
+  - edit
+  - shell
 ---
 
 ## Goal
