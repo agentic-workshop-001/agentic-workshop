@@ -94,6 +94,9 @@ export default function ContractsPage() {
         <div className="import-row">
           <input type="file" accept=".csv" onChange={e => setCsvFile(e.target.files?.[0] ?? null)} />
           <button className="btn-secondary" onClick={handleImport} disabled={!csvFile}>Import</button>
+          <a className="btn-secondary" style={{ textDecoration: 'none', padding: '.4rem .9rem' }}
+            href={"data:text/csv;charset=utf-8," + encodeURIComponent("contractId,meterId,customerId,fullName,nif,email,contractType,startDate,endDate,billingCycle,flatMonthlyFeeEur,includedKwh,overagePricePerKwhEur,fixedPricePerKwhEur,taxRate,iban\n")}
+            download="contracts-template.csv">Download template</a>
         </div>
         {importRes && (
           <div className="import-result">
