@@ -1,5 +1,6 @@
 package com.naturgy.workshop.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.naturgy.workshop.domain.enums.ReadingQuality;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
@@ -29,6 +30,7 @@ public class Reading {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "meter_id", insertable = false, updatable = false)
     @NotNull
+    @JsonBackReference("meter-readings")
     private Meter meter;
 
     /** Energy consumed in this hour, in kWh.  Must be >= 0 per csv-spec. */

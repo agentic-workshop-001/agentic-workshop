@@ -1,5 +1,6 @@
 package com.naturgy.workshop.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.naturgy.workshop.domain.enums.BillingCycle;
 import com.naturgy.workshop.domain.enums.ContractType;
 import jakarta.persistence.*;
@@ -32,6 +33,7 @@ public class Contract {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "meter_id", nullable = false)
     @NotNull
+    @JsonBackReference("meter-contracts")
     private Meter meter;
 
     @Column(name = "customer_id", nullable = false, length = 50)

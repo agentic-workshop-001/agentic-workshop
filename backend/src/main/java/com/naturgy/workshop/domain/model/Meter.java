@@ -1,5 +1,6 @@
 package com.naturgy.workshop.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -38,10 +39,12 @@ public class Meter {
 
     /** Contracts that reference this meter (1 active per period per logic-spec). */
     @OneToMany(mappedBy = "meter", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference("meter-contracts")
     private List<Contract> contracts = new ArrayList<>();
 
     /** Hourly readings registered on this meter. */
     @OneToMany(mappedBy = "meter", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference("meter-readings")
     private List<Reading> readings = new ArrayList<>();
 
     // ── Constructors ──────────────────────────────────────────────────────────

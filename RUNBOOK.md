@@ -35,7 +35,7 @@ Source CSVs (SSOT):
 
 ```bash
 cd frontend
-npm install   # first time only
+c# first time only
 npm run dev
 # Starts on http://localhost:5173
 # All /api calls are proxied to http://localhost:8080
