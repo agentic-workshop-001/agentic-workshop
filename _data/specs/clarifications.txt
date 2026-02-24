@@ -40,3 +40,11 @@
 **Decision**: Using LocalDate for dates, Integer for hour.
 - Reading composite key: (meter_id, date, hour) instead of timestamp.
 - Allows hourly readings aggregation as per logic-spec.
+
+## H2 Reserved-Word: HOUR
+**Decision**: The `hour` field in ReadingId is mapped to DB column `reading_hour`.
+- Reason: H2 2.2.x (bundled with Spring Boot 3.2.x) reserves the identifier `HOUR`
+  as a datetime keyword (used in EXTRACT expressions). Using `hour` as a column name
+  causes `JdbcSQLSyntaxErrorException: expected "identifier"` at schema creation.
+- Fix: `@Column(name = "reading_hour")` in ReadingId.java.
+- Impact: DB column is `reading_hour`; Java field and JPQL path remain `hour`.
