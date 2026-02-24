@@ -4,6 +4,7 @@
 
 # Whitelist only _data and .github directories
 !.gitignore
+!RUNBOOK.md
 !_data/
 !_data/**
 !.github/
@@ -12,6 +13,10 @@
 # Whitelist backend source tree
 !backend/
 !backend/**
+
+# Whitelist frontend source tree (exclude build artifacts and deps)
+!frontend/
+!frontend/**
 
 # Build and dependency directories (explicit exclusion)
 /backend/target/
