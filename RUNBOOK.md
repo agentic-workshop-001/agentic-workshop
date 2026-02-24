@@ -9,6 +9,9 @@
 | Node.js | 18+ |
 | npm | 9+ |
 
+> **UI Standards**: The frontend follows Naturgy React Standards (MUI v5).
+> See `_data/specs/react-standards.md` for the full spec.
+
 ## Start Backend
 
 ```bash
